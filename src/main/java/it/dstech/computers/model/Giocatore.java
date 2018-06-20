@@ -8,7 +8,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 @Entity (name = "giocatore")
-public class Giocatore {
+public class Giocatore extends Base {
 
 	@Column (name = "nome", nullable = false, unique = false)
 	private String nome;
