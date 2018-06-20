@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -30,6 +31,18 @@ import it.dstech.computers.model.UtenteProfile;
 		@JsonIgnore
 		private Squadra squadra;
 		
+		@ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+		@JsonIgnore
+		private Campionato campionato;
+		
+		public Campionato getCampionato() {
+			return campionato;
+		}
+
+		public void setCampionato(Campionato campionato) {
+			this.campionato = campionato;
+		}
+
 		public String getUsername() {
 			return username;
 		}
