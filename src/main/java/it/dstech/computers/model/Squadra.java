@@ -3,7 +3,9 @@ package it.dstech.computers.model;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 
+@Entity
 public class Squadra extends Base {
 	
 	@Column(name = "nome", nullable = false, unique = true)
