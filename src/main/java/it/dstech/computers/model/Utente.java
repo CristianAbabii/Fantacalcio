@@ -17,5 +17,37 @@ import it.dstech.computers.model.UtenteProfile;
 		private Integer budget;
 		
 		private UtenteProfile profileType;
+
+		public String getUsername() {
+			return username;
+		}
+
+		public void setUsername(String username) {
+			this.username = username;
+		}
+
+		public String getPassword() {
+			return password;
+		}
+
+		public void setPassword(String password) {
+			this.password = password;
+		}
+
+		public Integer getBudget() {
+			return budget;
+		}
+
+		public void setBudget(Integer budget) {
+			this.budget = budget;
+		}
+
+		public UtenteProfile getProfileType() {
+			return profileType;
+		}
+
+		public void setProfileType(UtenteProfile profileType) {
+			this.profileType = profileType;
+		}
 		
 	}
