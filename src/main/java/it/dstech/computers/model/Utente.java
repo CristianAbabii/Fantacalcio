@@ -1,7 +1,14 @@
 package it.dstech.computers.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import it.dstech.computers.model.UtenteProfile;
 
@@ -16,8 +23,13 @@ import it.dstech.computers.model.UtenteProfile;
 		@Column (name = "budget", nullable = false, unique = false)
 		private Integer budget;
 		
+		@Enumerated(EnumType.STRING)
 		private UtenteProfile profileType;
 
+		@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "utente")
+		@JsonIgnore
+		private Squadra squadra;
+		
 		public String getUsername() {
 			return username;
 		}
@@ -48,6 +60,16 @@ import it.dstech.computers.model.UtenteProfile;
 
 		public void setProfileType(UtenteProfile profileType) {
 			this.profileType = profileType;
+		}
+		
+		public void setSquadra(Squadra s) {
+			
+			this.squadra = s;
+		}
+		
+		public Squadra getSquadra() {
+			
+			return this.squadra;
 		}
 		
 	}

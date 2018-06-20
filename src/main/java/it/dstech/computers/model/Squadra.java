@@ -2,8 +2,15 @@ package it.dstech.computers.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Squadra extends Base {
@@ -11,13 +18,16 @@ public class Squadra extends Base {
 	@Column(name = "nome", nullable = false, unique = true)
 	private String nome;
 	
-	//OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
 	private Utente utente;
 	
-	//ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Campionato campionato;
 	
-	//OneToMany
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "squadra")
+	@JsonIgnore
 	private List<Giocatore> rosa;
 	
 	@Column(name = "punti")

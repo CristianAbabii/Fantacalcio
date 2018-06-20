@@ -2,8 +2,13 @@ package it.dstech.computers.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity (name = "campionato")
 public class Campionato extends Base {
@@ -14,10 +19,16 @@ public class Campionato extends Base {
 	@Column (name = "giornate", nullable = false, unique = false)
 	private Integer giornate;
 	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "campionato")
+	@JsonIgnore
 	private List<Utente> utenti;
 	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "campionato")
+	@JsonIgnore
 	private List<Squadra> squadre;
 	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "campionato")
+	@JsonIgnore
 	private List<Partita> partite;
 	
 	public String getNome() {

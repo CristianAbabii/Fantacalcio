@@ -1,12 +1,23 @@
 package it.dstech.computers.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Voto extends Base{
-	@Column(name="voto", nullable=false , unique = false)
+	
+	@Column(name = "voto", nullable=false , unique = true)
 	private Double voto;
+	
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "voti")
+	@JsonIgnore
+	private List<Partita> partite;
 
 	public Double getVoto() {
 		return voto;

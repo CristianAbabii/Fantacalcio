@@ -2,10 +2,16 @@ package it.dstech.computers.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity (name = "giocatore")
 public class Giocatore extends Base {
@@ -21,9 +27,13 @@ public class Giocatore extends Base {
 	private Ruolo ruolo;
 	@Column (name = "prezzo", nullable = false, unique = false)
 	private Integer prezzo;
-	@Column (name = "squadra", nullable = false, unique = false)
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Squadra squadra;
 	
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "giocatori")
+	@JsonIgnore
 	private List<Partita> listaPartite;
 
 	public String getNome() {
