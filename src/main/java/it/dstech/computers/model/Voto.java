@@ -26,6 +26,20 @@ public class Voto extends Base{
 	public void setVoto(Double voto) {
 		this.voto = voto;
 	}
+
+	/**
+	 * @return the partite
+	 */
+	public List<Partita> getPartite() {
+		return partite;
+	}
+
+	/**
+	 * @param partite the partite to set
+	 */
+	public void setPartite(List<Partita> partite) {
+		this.partite = partite;
+	}
 	
 
 }
