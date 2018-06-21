@@ -71,8 +71,8 @@ public class SquadraService {
 		int def = 0;
 		int cen = 0;
 		int att = 0;
+		if(rosa.size() < 11) {
 		for (Giocatore g : rosa) {
-			if(rosa.size() < 11) {
 				Giocatore giocatoreDaComprare = serviceGioc.findOne(id);
 				if(por < 1 && giocatoreDaComprare.getRuolo() == Ruolo.PORTIERE ) {
 					rosa.add(giocatoreDaComprare);
@@ -84,11 +84,12 @@ public class SquadraService {
 					rosa.add(giocatoreDaComprare);
 				}else { throw new Exception ("non puoi comprare gicoatori.");
 				}
-			} else {throw new Exception ("la rosa è completa");
 			}
+		} else {throw new Exception ("la rosa è completa");
 		}
 		return dao.save(rosa);
 	}
+	
 
 }
 
