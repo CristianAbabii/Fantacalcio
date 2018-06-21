@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.dstech.computers.model.Giocatore;
-import it.dstech.computers.service.auth.GiocatoreService;
+import it.dstech.computers.service.GiocatoreService;
 
 
 
