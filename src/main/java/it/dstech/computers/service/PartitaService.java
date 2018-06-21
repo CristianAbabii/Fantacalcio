@@ -1,4 +1,4 @@
-package it.dstech.computers.service.auth;
+package it.dstech.computers.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

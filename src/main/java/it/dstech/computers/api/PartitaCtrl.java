@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.dstech.computers.model.Partita;
-import it.dstech.computers.service.auth.PartitaService;
+import it.dstech.computers.service.PartitaService;
 
 @RestController
 @RequestMapping ("/partita")
