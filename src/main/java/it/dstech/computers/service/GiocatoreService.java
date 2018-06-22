@@ -1,5 +1,6 @@
 package it.dstech.computers.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ public class GiocatoreService {
 	
 	@Autowired
 	private IGiocatoreRepository dao;
+	
 	
 	public Giocatore create (Giocatore giocatore) {
 		return dao.save(giocatore);
@@ -36,5 +38,4 @@ public class GiocatoreService {
 		giocatoreDb.setPrezzo(giocatoreInput.getPrezzo());
 		return dao.save(giocatoreDb);
 	}
-	
 }
