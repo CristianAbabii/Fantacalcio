@@ -110,7 +110,7 @@ public class PartitaService {
 		c.setPartite(listaPartite);
 		serviceCampionato.update(c);
 		
-		return dao.save(p);
+		return create(p);
 	}
 	 
 }

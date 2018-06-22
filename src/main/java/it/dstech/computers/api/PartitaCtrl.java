@@ -1,13 +1,17 @@
 package it.dstech.computers.api;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.dstech.computers.model.Partita;
+import it.dstech.computers.model.Voto;
 import it.dstech.computers.service.PartitaService;
 
 @RestController
@@ -18,8 +22,9 @@ public class PartitaCtrl {
 	private PartitaService servicePartita;
 
 	@RequestMapping (method = RequestMethod.POST, value = "/create")
-	public Partita create (@RequestBody Partita partita) {
-		return servicePartita.create(partita);
+	public Partita create (@RequestParam("idSC") Long idSquadraCasa,@RequestParam("idST") Long idSquadraTrasferta, @RequestBody List<Voto> votiSquadraCasa, @RequestBody List<Voto> votiSquadraTrasferta) throws Exception {
+		
+		return servicePartita.disputa(idSquadraCasa, idSquadraTrasferta, votiSquadraCasa, votiSquadraTrasferta);
 	}
 	@RequestMapping (method = RequestMethod.GET, value = "/findOne/{id}")
 	public Partita findOne (@PathVariable Long id) throws Exception {
