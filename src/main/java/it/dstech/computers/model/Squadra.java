@@ -32,6 +32,12 @@ public class Squadra extends Base {
 	
 	@Column(name = "punti")
 	private Integer punti;
+	
+	@Column(name = "gol_fatti")
+	private Integer golFatti;
+	
+	@Column(name = "gol_subiti")
+	private Integer golSubiti;
 
 	/**
 	 * @return the nome
@@ -102,5 +108,35 @@ public class Squadra extends Base {
 	public void setPunti(Integer punti) {
 		this.punti = punti;
 	}
+
+	/**
+	 * @return the golFatti
+	 */
+	public Integer getGolFatti() {
+		return golFatti;
+	}
+
+	/**
+	 * @param golFatti the golFatti to set
+	 */
+	public void setGolFatti(Integer golFatti) {
+		this.golFatti = golFatti;
+	}
+
+	/**
+	 * @return the golSubiti
+	 */
+	public Integer getGolSubiti() {
+		return golSubiti;
+	}
+
+	/**
+	 * @param golSubiti the golSubiti to set
+	 */
+	public void setGolSubiti(Integer golSubiti) {
+		this.golSubiti = golSubiti;
+	}
+	
+	
 
 }
