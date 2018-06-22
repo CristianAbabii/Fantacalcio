@@ -63,33 +63,56 @@ public class SquadraService {
 		return dao.save(old);
 	}
 
-	public Squadra compraGiocatore (Long id, List<Giocatore> rosa) throws Exception {
+	public Squadra compraGiocatore (Long idGiocatoreDaComprare) throws Exception {
+		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Utente utente = serviceUtente.findByUsername(auth.getName());
+		
+		Giocatore gdc = serviceGioc.findOne(idGiocatoreDaComprare);
+		// if gdc == null throw exception
+		
 		Squadra s = utente.getSquadra();
+		List<Giocatore> rosa = s.getRosa();
 		int por = 0;
 		int def = 0;
 		int cen = 0;
 		int att = 0;
 		if(rosa.size() < 11) {
-		for (Giocatore g : rosa) {
-				Giocatore giocatoreDaComprare = serviceGioc.findOne(id);
-				if(por < 1 && giocatoreDaComprare.getRuolo() == Ruolo.PORTIERE ) {
-					rosa.add(giocatoreDaComprare);
-				}else if(def < 5 && giocatoreDaComprare.getRuolo() == Ruolo.DIFENSORE) {
-					rosa.add(giocatoreDaComprare);
-				}else if(cen < 5 && giocatoreDaComprare.getRuolo() == Ruolo.CENTROCAMPISTA) {
-					rosa.add(giocatoreDaComprare);
-				}else if(att < 3 && giocatoreDaComprare.getRuolo() == Ruolo.ATTACCANTE) {
-					rosa.add(giocatoreDaComprare);
-				}else { throw new Exception ("non puoi comprare gicoatori.");
+			for (Giocatore g : rosa) {
+				if(g.getRuolo() == Ruolo.PORTIERE) {
+					por++;
 				}
+				if(g.getRuolo() == Ruolo.DIFENSORE) {
+					def++;
+				}
+				if(g.getRuolo() == Ruolo.CENTROCAMPISTA) {
+					cen++;
+				}
+				if(g.getRuolo() == Ruolo.ATTACCANTE) {
+					att++;
+				}
+				
 			}
-		} else {throw new Exception ("la rosa è completa");
+		} else { 
+			throw new Exception ("la rosa è completa");
 		}
+		
+		if(por < 1 && gdc.getRuolo() == Ruolo.PORTIERE) {
+			rosa.add(gdc);
+		}
+		if(def < 5 && gdc.getRuolo() == Ruolo.DIFENSORE) {
+			rosa.add(gdc);
+		}
+		if(cen < 5 && gdc.getRuolo() == Ruolo.CENTROCAMPISTA) {
+			rosa.add(gdc);
+		}
+		if(att < 3 && gdc.getRuolo() == Ruolo.ATTACCANTE) {
+			rosa.add(gdc);
+		}
+		
+		s.setRosa(rosa);
+
 		return dao.save(rosa);
 	}
-	
 
 }
-
