@@ -114,5 +114,31 @@ public class SquadraService {
 
 		return dao.save(rosa);
 	}
+	
+	public Squadra vendi(Long idGiocatore) throws Exception {
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Utente u = serviceUtente.findByUsername(auth.getName());
+		
+		Giocatore gdv = serviceGioc.findOne(idGiocatore);
+		
+		Squadra s = gdv.getSquadra();
+		if(s == null) {
+			return null;
+			//throw new Exception("Giocatore non ha nessuna squadra");
+		}
+		
+		List<Giocatore> rosa = s.getRosa();
+		rosa.remove(gdv);
+		gdv.setSquadra(null);
+		s.setRosa(rosa);
+		
+		u.setBudget(u.getBudget() + gdv.getPrezzo());
+		
+		serviceUtente.update(u);
+		serviceGioc.update(gdv);
+		
+		return dao.save(s);
+	}
 
 }
