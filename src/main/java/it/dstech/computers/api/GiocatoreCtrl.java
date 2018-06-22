@@ -32,16 +32,4 @@ public class GiocatoreCtrl {
 	public Iterable<Giocatore> findAll() {
 		return serviceGiocatore.findAll();
 	}
-	@RequestMapping (method = RequestMethod.DELETE, value = "/deleteOne")
-	public void deleteOne (Long id) {
-		serviceGiocatore.deleteOne(id);
-	}
-	@RequestMapping (method = RequestMethod.DELETE, value = "/deleteAll") 
-	public void deleteAll() {
-		serviceGiocatore.deleteAll();
-	}
-	@RequestMapping (method = RequestMethod.PUT, value = "/update")
-	public Giocatore update (@RequestBody Giocatore giocatoreInput) throws Exception {
-		return serviceGiocatore.update(giocatoreInput);
-	}
 }
