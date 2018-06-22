@@ -71,6 +71,11 @@ public class SquadraService {
 		Giocatore gdc = serviceGioc.findOne(idGiocatoreDaComprare);
 		// if gdc == null throw exception
 		
+		if(gdc.getPrezzo() > utente.getBudget()) {
+			return null;
+			// throw new Exception ....
+		}
+		
 		Squadra s = utente.getSquadra();
 		List<Giocatore> rosa = s.getRosa();
 		int por = 0;
@@ -99,20 +104,29 @@ public class SquadraService {
 		
 		if(por < 1 && gdc.getRuolo() == Ruolo.PORTIERE) {
 			rosa.add(gdc);
+			gdc.setSquadra(s);
 		}
 		if(def < 5 && gdc.getRuolo() == Ruolo.DIFENSORE) {
 			rosa.add(gdc);
+			gdc.setSquadra(s);
 		}
 		if(cen < 5 && gdc.getRuolo() == Ruolo.CENTROCAMPISTA) {
 			rosa.add(gdc);
+			gdc.setSquadra(s);
 		}
 		if(att < 3 && gdc.getRuolo() == Ruolo.ATTACCANTE) {
 			rosa.add(gdc);
+			gdc.setSquadra(s);
 		}
 		
 		s.setRosa(rosa);
 
-		return dao.save(rosa);
+		utente.setBudget(utente.getBudget() - gdc.getPrezzo());
+		serviceUtente.update(utente);
+		
+		serviceGioc.update(gdc);
+		
+		return dao.save(s);
 	}
 	
 	public Squadra vendi(Long idGiocatore) throws Exception {
