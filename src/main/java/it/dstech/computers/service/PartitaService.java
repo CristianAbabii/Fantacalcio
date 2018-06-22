@@ -34,4 +34,5 @@ public class PartitaService {
 		partitaDb.setRisultato(partitaInput.getRisultato());
 		return dao.save(partitaDb);
 	}
+	 
 }
